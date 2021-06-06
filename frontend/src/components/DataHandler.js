@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 
 class DataHandler extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            id: this.props.data.id,
+            title: this.props.data.title,
+            description: this.props.data.description,
+            completed: this.props.data.completed,
+        };
+    }
+
     render(){
         return(
             <div>
                 <input 
                     type="checkbox" 
-                    id={this.props.data.id} 
-                    checked={this.props.data.completed}
+                    id={this.state.id} 
+                    checked={this.state.completed}
                 />
                 <label 
-                    htmlFor={this.props.data.id} 
-                    className={this.props.data.completed ? "mystrike" : ""} 
-                    title={this.props.data.description}
+                    htmlFor={this.state.id} 
+                    className={this.state.completed ? "mystrike" : ""} 
+                    title={this.state.description}
                 >
-                    {this.props.data.title}
+                    {this.state.title}
                 </label>
             </div>
         );
