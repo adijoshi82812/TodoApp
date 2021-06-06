@@ -1,9 +1,11 @@
 import React from 'react';
 
 function Header(){
+    const firstname = "Aditya"
+    const lastname = "Joshi"
     return(
         <header>
-            <h1>This is a header</h1>
+            <h1>Todo App by {firstname} {lastname}</h1>
         </header>
     );
 }

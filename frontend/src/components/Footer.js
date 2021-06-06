@@ -1,9 +1,22 @@
 import React from 'react';
 
 function Footer(){
+    const date = new Date();
+    const hours = date.getHours();
+
+    let greet;
+    if(hours <= 12){
+        greet = "Good Morning";
+    }else if(hours >= 12 && hours <= 17){
+        greet = "Good Afternoon";
+    }else{
+        greet = "Good Night";
+    }
+
     return(
         <footer>
-            <p>This is a footer</p>
+            <p>{greet}</p>
+            <p>Copyright &copy; Joshi's</p>
         </footer>
     );
 }
