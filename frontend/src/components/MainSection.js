@@ -7,7 +7,10 @@ class MainSection extends Component{
         super();
         this.state = {
             Data: [],
+            value: { title: "", description: "" },
         };
+
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
     refreshList = () => {
@@ -56,37 +59,112 @@ class MainSection extends Component{
         });
     };
 
+    handleKeyUp(event){
+        let value = this.state.value;
+        value[event.target.name] = event.target.value;
+        this.setState({ value: value });
+    }
+
+    handleAdd = () => {
+        if(this.state.value.title.length < 4)
+            return alert("Task must be 4 characters long");
+        
+        if(this.state.value.description.length < 10)
+            return alert("Description must be 10 characters long");
+
+        const data = {
+            title: this.state.value.title,
+            description: this.state.value.description,
+        };
+
+        axios.post('http://localhost:8000/api/todos/', data)
+        .then(() => {
+            this.refreshList();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+
     render(){
         const datacomponent = this.state.Data.map((data) => {
             return(
-                <div 
+                <tr
                     key={data.id}
                 >
-                    <input
-                        type="checkbox"
-                        id={data.id}
-                        checked={data.completed}
-                        onChange={() => this.handleUpdate(data.id, data.title, data.description, data.completed)}
-                    />
-                    <label
-                        htmlFor={data.id}
-                        className={data.completed ? "mystrike" : ""}
-                        title={data.description}
-                    >
-                        {data.title}
-                    </label>
-                    <button
-                        type="button"
-                        onClick={() =>  this.handleDelete(data.id)}
-                    >
-                        Delete
-                    </button>
-                </div>
+                    <td>
+                        <input
+                            type="checkbox"
+                            id={data.id}
+                            checked={data.completed}
+                            onChange={() => this.handleUpdate(data.id, data.title, data.description, data.completed)}
+                        />
+                    </td>
+                    <td>
+                        <label
+                            htmlFor={data.id}
+                            className={data.completed ? "mystrike" : ""}
+                            title={data.description}
+                        >
+                            {data.title}
+                        </label>
+                    </td>
+                    <td>
+                        <button
+                            type="button"
+                            onClick={() =>  this.handleDelete(data.id)}
+                        >
+                            Delete
+                        </button>
+                    </td>
+                </tr>
             );
         });
         return(
             <main>
-                {datacomponent}
+                <table>
+                    <tbody>
+                        {datacomponent}
+                    </tbody>
+                    <tr>
+                        <td
+                            colSpan="3"
+                        >
+                            <input
+                                type="text"
+                                placeholder="Enter new task here"
+                                name="title"
+                                onChange={this.handleKeyUp}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            colSpan="3"
+                        >
+                            <textarea
+                                placeholder="Enter description for the task"
+                                name="description"
+                                onChange={this.handleKeyUp}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            colSpan="2"
+                        >
+                            Click the button to add
+                        </td>
+                        <td>
+                            <button
+                                type="button"
+                                onClick={this.handleAdd}
+                            >
+                                Add
+                            </button>
+                        </td>
+                    </tr>
+                </table>
             </main>
         );
     }
