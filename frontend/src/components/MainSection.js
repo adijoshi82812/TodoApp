@@ -8,9 +8,12 @@ class MainSection extends Component {
         this.state = {
             Data: [],
             value: { title: "", description: "" },
+            show: false,
+            modalvalue: {title: "", description: ""},
         };
 
         this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.handleModal = this.handleModal.bind(this);
     }
 
     refreshList = () => {
@@ -86,6 +89,43 @@ class MainSection extends Component {
             });
     };
 
+    handleModal(title, description){
+        if(this.state.show){
+            this.setState({ 
+                show: false,
+                modalvalue: { title: "", description: "", } 
+            });
+        }
+        else{
+            this.setState({ 
+                show: true,
+                modalvalue: {title: title, description: description} 
+            });
+        }
+    }
+
+    Modal = ({ show, handleModal, children }) => {
+        const showHideClassName = show ? "w3-show w3-modal" : "w3-modal";
+        return(
+            <div
+                className={showHideClassName}
+            >
+                <div
+                    className="w3-modal-content w3-container w3-animate-top w3-round"
+                >
+                    <button
+                        type="button"
+                        className="w3-button w3-hover-white w3-round w3-display-topright"
+                        onClick={handleModal}
+                    >
+                        X
+                    </button>
+                    {children}
+                </div>
+            </div>
+        );
+    };
+
     render() {
         const datacomponent = this.state.Data.map((data) => {
             return (
@@ -113,6 +153,16 @@ class MainSection extends Component {
                     <td>
                         <button
                             type="button"
+                            onClick={() => this.handleModal(data.title, data.description)}
+                            className="w3-button w3-green w3-round w3-hover-green"
+                            style={{ width: "100%" }}
+                        >
+                            Details
+                        </button>
+                    </td>
+                    <td>
+                        <button
+                            type="button"
                             onClick={() => this.handleDelete(data.id)}
                             className="w3-button w3-red w3-round w3-hover-red"
                             style={{ width: "100%" }}
@@ -133,7 +183,7 @@ class MainSection extends Component {
                         {datacomponent}
                         <tr>
                             <td
-                                colSpan="3"
+                                colSpan="4"
                             >
                                 <input
                                     type="text"
@@ -146,7 +196,7 @@ class MainSection extends Component {
                         </tr>
                         <tr>
                             <td
-                                colSpan="3"
+                                colSpan="4"
                             >
                                 <textarea
                                     placeholder="Enter description for the task"
@@ -159,7 +209,7 @@ class MainSection extends Component {
                         </tr>
                         <tr>
                             <td
-                                colSpan="2"
+                                colSpan="3"
                                 style={{ textAlign: "right" }}
                             >
                                 Click the button to add
@@ -177,6 +227,35 @@ class MainSection extends Component {
                         </tr>
                     </tbody>
                 </table>
+
+                <this.Modal
+                    show={this.state.show}
+                    handleModal={this.handleModal}
+                >
+                    <h2
+                        className="w3-margin-bottom w3-center"
+                    >
+                        Details
+                    </h2>
+                    <label>
+                        Title:
+                        <input
+                            type="text"
+                            value={this.state.modalvalue.title}
+                            className="w3-input w3-border w3-margin-bottom w3-round"
+                            readOnly
+                        />
+                    </label>
+                    <label>
+                        Description:
+                        <textarea
+                            value={this.state.modalvalue.description}
+                            className="w3-input w3-border w3-padding-24 w3-margin-bottom w3-round"
+                            style={{ resize: "none" }}
+                            readOnly
+                        />
+                    </label>
+                </this.Modal>
             </main>
         );
     }
