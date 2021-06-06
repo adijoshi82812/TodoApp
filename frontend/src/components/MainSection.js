@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
-class MainSection extends Component{
-    constructor(){
+class MainSection extends Component {
+    constructor() {
         super();
         this.state = {
             Data: [],
@@ -17,21 +17,21 @@ class MainSection extends Component{
         let data;
 
         axios.get('http://localhost:8000/api/todos/')
-        .then((res) => {
-            data = res.data;
-            this.setState({ Data: data });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+            .then((res) => {
+                data = res.data;
+                this.setState({ Data: data });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.refreshList();
     }
 
     handleUpdate = (id, title, description, completed) => {
-        const url = 'http://localhost:8000/api/todos/'+id+'/';
+        const url = 'http://localhost:8000/api/todos/' + id + '/';
         const data = {
             title: title,
             description: description,
@@ -39,37 +39,37 @@ class MainSection extends Component{
         };
 
         axios.put(url, data)
-        .then(() => {
-            this.refreshList();
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+            .then(() => {
+                this.refreshList();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     handleDelete = (id) => {
-        const url = 'http://localhost:8000/api/todos/'+id+'/';
-        
+        const url = 'http://localhost:8000/api/todos/' + id + '/';
+
         axios.delete(url)
-        .then(() => {
-            this.refreshList();
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+            .then(() => {
+                this.refreshList();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
-    handleKeyUp(event){
+    handleKeyUp(event) {
         let value = this.state.value;
         value[event.target.name] = event.target.value;
         this.setState({ value: value });
     }
 
     handleAdd = () => {
-        if(this.state.value.title.length < 4)
+        if (this.state.value.title.length < 4)
             return alert("Task must be 4 characters long");
-        
-        if(this.state.value.description.length < 10)
+
+        if (this.state.value.description.length < 10)
             return alert("Description must be 10 characters long");
 
         const data = {
@@ -78,17 +78,17 @@ class MainSection extends Component{
         };
 
         axios.post('http://localhost:8000/api/todos/', data)
-        .then(() => {
-            this.refreshList();
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+            .then(() => {
+                this.refreshList();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
-    render(){
+    render() {
         const datacomponent = this.state.Data.map((data) => {
-            return(
+            return (
                 <tr
                     key={data.id}
                 >
@@ -112,7 +112,7 @@ class MainSection extends Component{
                     <td>
                         <button
                             type="button"
-                            onClick={() =>  this.handleDelete(data.id)}
+                            onClick={() => this.handleDelete(data.id)}
                         >
                             Delete
                         </button>
@@ -120,50 +120,50 @@ class MainSection extends Component{
                 </tr>
             );
         });
-        return(
+        return (
             <main>
                 <table>
                     <tbody>
                         {datacomponent}
-                    </tbody>
-                    <tr>
-                        <td
-                            colSpan="3"
-                        >
-                            <input
-                                type="text"
-                                placeholder="Enter new task here"
-                                name="title"
-                                onChange={this.handleKeyUp}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td
-                            colSpan="3"
-                        >
-                            <textarea
-                                placeholder="Enter description for the task"
-                                name="description"
-                                onChange={this.handleKeyUp}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td
-                            colSpan="2"
-                        >
-                            Click the button to add
-                        </td>
-                        <td>
-                            <button
-                                type="button"
-                                onClick={this.handleAdd}
+                        <tr>
+                            <td
+                                colSpan="3"
                             >
-                                Add
-                            </button>
+                                <input
+                                    type="text"
+                                    placeholder="Enter new task here"
+                                    name="title"
+                                    onChange={this.handleKeyUp}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan="3"
+                            >
+                                <textarea
+                                    placeholder="Enter description for the task"
+                                    name="description"
+                                    onChange={this.handleKeyUp}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan="2"
+                            >
+                                Click the button to add
                         </td>
-                    </tr>
+                            <td>
+                                <button
+                                    type="button"
+                                    onClick={this.handleAdd}
+                                >
+                                    Add
+                            </button>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </main>
         );
