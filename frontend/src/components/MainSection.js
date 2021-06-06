@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Data from '../Data';
 import DataHandler from './DataHandler';
 
-function MainSection(){
-    const datacomponent = Data.map((data) => {
+class MainSection extends Component{
+    render(){
+        const datacomponent = Data.map((data) => {
+            return(
+                <DataHandler 
+                    key={data.id} 
+                    data={data}
+                />
+            );
+        });
         return(
-            <DataHandler key={data.id} data={data}/>
+            <main>
+                {datacomponent}
+            </main>
         );
-    });
-    return(
-        <main>
-            {datacomponent}
-        </main>
-    );
+    }
 }
 
 export default MainSection;

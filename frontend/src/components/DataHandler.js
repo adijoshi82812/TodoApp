@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function DataHandler(props){
-    return(
-        <div>
-            <input type="checkbox" id={props.data.id} checked={props.data.completed}/>
-            <label htmlFor={props.data.id} className={props.data.completed ? "mystrike" : ""} title={props.data.description}>{props.data.title}</label>
-        </div>
-    );
+class DataHandler extends Component{
+    render(){
+        return(
+            <div>
+                <input 
+                    type="checkbox" 
+                    id={this.props.data.id} 
+                    checked={this.props.data.completed}
+                />
+                <label 
+                    htmlFor={this.props.data.id} 
+                    className={this.props.data.completed ? "mystrike" : ""} 
+                    title={this.props.data.description}
+                >
+                    {this.props.data.title}
+                </label>
+            </div>
+        );
+    }
 }
 
 export default DataHandler;
