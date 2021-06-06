@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import DataHandler from './DataHandler';
 
 class MainSection extends Component{
     constructor(){
@@ -31,10 +30,22 @@ class MainSection extends Component{
     render(){
         const datacomponent = this.state.Data.map((data) => {
             return(
-                <DataHandler 
-                    key={data.id} 
-                    data={data}
-                />
+                <div 
+                    key={data.id}
+                >
+                    <input
+                        type="checkbox"
+                        id={data.id}
+                        checked={data.completed}
+                    />
+                    <label
+                        htmlFor={data.id}
+                        className={data.completed ? "mystrike" : ""}
+                        title={data.description}
+                    >
+                        {data.title}
+                    </label>
+                </div>
             );
         });
         return(
