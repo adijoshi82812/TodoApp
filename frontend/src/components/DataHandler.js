@@ -11,6 +11,13 @@ class DataHandler extends Component{
         };
     }
 
+    handleChange = () => {
+        if(this.state.completed)
+            this.setState({ completed: false });
+        else
+            this.setState({ completed: true });
+    };
+
     render(){
         return(
             <div>
@@ -18,6 +25,7 @@ class DataHandler extends Component{
                     type="checkbox" 
                     id={this.state.id} 
                     checked={this.state.completed}
+                    onChange={this.handleChange}
                 />
                 <label 
                     htmlFor={this.state.id} 
