@@ -98,12 +98,13 @@ class MainSection extends Component {
                             id={data.id}
                             checked={data.completed}
                             onChange={() => this.handleUpdate(data.id, data.title, data.description, data.completed)}
+                            className="w3-check"
                         />
                     </td>
                     <td>
                         <label
                             htmlFor={data.id}
-                            className={data.completed ? "mystrike" : ""}
+                            className={data.completed ? "mystrike w3-large" : "w3-large"}
                             title={data.description}
                         >
                             {data.title}
@@ -113,6 +114,8 @@ class MainSection extends Component {
                         <button
                             type="button"
                             onClick={() => this.handleDelete(data.id)}
+                            className="w3-button w3-red w3-round w3-hover-red"
+                            style={{ width: "100%" }}
                         >
                             Delete
                         </button>
@@ -122,7 +125,10 @@ class MainSection extends Component {
         });
         return (
             <main>
-                <table>
+                <table
+                className="w3-border w3-round w3-margin-bottom"
+                 style={{ margin: "0 auto" }}
+                >
                     <tbody>
                         {datacomponent}
                         <tr>
@@ -134,6 +140,7 @@ class MainSection extends Component {
                                     placeholder="Enter new task here"
                                     name="title"
                                     onChange={this.handleKeyUp}
+                                    className="w3-input w3-border w3-round w3-center"
                                 />
                             </td>
                         </tr>
@@ -145,12 +152,15 @@ class MainSection extends Component {
                                     placeholder="Enter description for the task"
                                     name="description"
                                     onChange={this.handleKeyUp}
+                                    className="w3-input w3-border w3-round w3-center w3-padding-24"
+                                    style={{ resize: "none" }}
                                 />
                             </td>
                         </tr>
                         <tr>
                             <td
                                 colSpan="2"
+                                style={{ textAlign: "right" }}
                             >
                                 Click the button to add
                         </td>
@@ -158,6 +168,8 @@ class MainSection extends Component {
                                 <button
                                     type="button"
                                     onClick={this.handleAdd}
+                                    className="w3-button w3-blue w3-round w3-hover-blue"
+                                    style={{ width: "100%" }}
                                 >
                                     Add
                             </button>

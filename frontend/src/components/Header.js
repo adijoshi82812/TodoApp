@@ -5,7 +5,9 @@ class Header extends Component{
         const firstname = "Aditya"
         const lastname = "Joshi"
         return(
-            <header>
+            <header
+                className="w3-center w3-blue w3-container w3-margin-bottom"
+            >
                 <h1>
                     Todo App by {firstname} {lastname}
                 </h1>

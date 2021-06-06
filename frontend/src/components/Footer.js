@@ -15,7 +15,9 @@ class Footer extends Component{
         }
 
         return(
-            <footer>
+            <footer
+                className="w3-center w3-red w3-container"
+            >
                 <p>
                     {greet}
                 </p>
