@@ -44,6 +44,18 @@ class MainSection extends Component{
         });
     };
 
+    handleDelete = (id) => {
+        const url = 'http://localhost:8000/api/todos/'+id+'/';
+        
+        axios.delete(url)
+        .then(() => {
+            this.refreshList();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+
     render(){
         const datacomponent = this.state.Data.map((data) => {
             return(
@@ -63,6 +75,12 @@ class MainSection extends Component{
                     >
                         {data.title}
                     </label>
+                    <button
+                        type="button"
+                        onClick={() =>  this.handleDelete(data.id)}
+                    >
+                        Delete
+                    </button>
                 </div>
             );
         });
