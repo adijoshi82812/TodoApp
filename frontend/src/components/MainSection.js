@@ -27,6 +27,23 @@ class MainSection extends Component{
         this.refreshList();
     }
 
+    handleUpdate = (id, title, description, completed) => {
+        const url = 'http://localhost:8000/api/todos/'+id+'/';
+        const data = {
+            title: title,
+            description: description,
+            completed: completed ? false : true,
+        };
+
+        axios.put(url, data)
+        .then(() => {
+            this.refreshList();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+
     render(){
         const datacomponent = this.state.Data.map((data) => {
             return(
@@ -37,6 +54,7 @@ class MainSection extends Component{
                         type="checkbox"
                         id={data.id}
                         checked={data.completed}
+                        onChange={() => this.handleUpdate(data.id, data.title, data.description, data.completed)}
                     />
                     <label
                         htmlFor={data.id}
