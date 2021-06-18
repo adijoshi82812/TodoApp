@@ -16,7 +16,9 @@ Step 5 : Now, Open Another Shell window and add CRA(Create-React-App) dependenci
 Step 6 : cd into frontend
 Step 7 : Run the frontend server using npm start command. \
 Step 8 : Open http://localhost:8000/ from your browser. \
-You will see some of my pre written tasks.
+You will see some of my pre written tasks. \
+
+**Note** : I Have deleted the css library, if you want the same output just add w3.css framework from https://www.w3schools.com/w3css/4/w3.css
 
 ## How to add tasks
 In the enter new task here input field, add the title for the task you want to add. \
