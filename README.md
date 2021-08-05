@@ -1,33 +1,83 @@
-# Todo App
-## Description
-This is a simple Todo Application written in python-django as backend and react.js as frontend. \
-Feel free to use my code for reference.
 
-## What does this project offer
-This project lets you add new task, view them, delete them and mark as completed. \
-Its a simple CRUD application using python-django at backend and react.js at frontend.
+# Todo Application [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
-## How to use
-Step 1 : Clone this repo onto your local machine. \
-Step 2 : Add your own django secret key in backend/backend/settings.py file. \
-Step 3 : Open Shell and cd into backend. \
-Step 4 : Run backend server using python manage.py runserver command. \
-Step 5 : Now, Open Another Shell window and add CRA(Create-React-App) dependencies using npx create-react-app into frontend. \
-Step 6 : cd into frontend. \
-Step 7 : Run the frontend server using npm start command. \
-Step 8 : Open http://localhost:3000/ from your browser. \
-You will see some of my pre written tasks.
+This is a simple To Do Application built using ReactJS and python django
+## Tech Stack
 
-**Note** : I Have deleted the css library, if you want the same output just add w3.css framework from https://www.w3schools.com/w3css/4/w3.css
+**Frontend :** React
 
-## How to add tasks
-In the enter new task here input field, add the title for the task you want to add. \
-**Note:** Task must be at least 4 characters long. \
-In the enter description for the task input field, add the description for the task. \
-**Note:** Description must be at least 10 Characters long. \
-Now hit the add button, the react app will automatically refresh itself and you will see your task in the table.
+**Backend :** Python, Django
+## Features
 
-## Author & Copyright
-This app is written by Aditya Joshi
-Modifying and publishing this project can be done using copyright text
-Copyright Aditya Joshi © Joshi's
+- Add new task
+- Delete a task
+- Mark a task completed
+- RealTime update
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/adijoshi82812/TodoApp.git
+```
+
+### Run the backend server
+
+Move to the backend directory
+
+```bash
+  cd backend
+```
+
+Create the backend virtual environment
+
+```bash
+  python3 -m venv backend-env
+```
+
+Activate the backend virtual environment
+
+```bash
+  source backend-env/bin/activate
+```
+
+Run migrate command to create a database locally
+
+```bash
+  python3 manage.py migrate
+```
+
+Run the backend server
+
+```bash
+  python3 manage.py runserver
+```
+
+### Run the frontend server
+
+Move to the frontend directory
+
+```bash
+  cd frontend
+```
+
+Install Dependencies
+
+```bash
+  npm install
+```
+
+Run the frontend server
+
+```bash
+  npm start
+```
+## Feedback
+
+If you have any feedback, please reach out to us at adijoshi82812@gmail.com
+## Authors
+
+- [@Aditya Joshi](https://www.github.com/adijoshi82812)
+## 🚀 About Me
+
+I'm a full stack developer. I use python-django at the Back End and react.js at the Front End.
