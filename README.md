@@ -41,6 +41,12 @@ Activate the backend virtual environment
   source backend-env/bin/activate
 ```
 
+Install requirements.txt
+
+```bash
+  python3 install -r requirements.txt
+```
+
 Run migrate command to create a database locally
 
 ```bash
