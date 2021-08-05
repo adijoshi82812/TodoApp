@@ -72,6 +72,9 @@ Run the frontend server
 ```bash
   npm start
 ```
+
+**Note :** Add w3.css framework to frontend/src directory from https://www.w3schools.com/w3css/4/w3.css
+
 ## Feedback
 
 If you have any feedback, please reach out to us at adijoshi82812@gmail.com
